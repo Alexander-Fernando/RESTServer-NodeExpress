@@ -1,17 +1,22 @@
 const express = require('express');
 const cors = require('cors');
+const { conexionDB } = require('../database/config');
 
 class Server {
     constructor(){
         this.app = express();
         this.PORT = process.env.PORT;
         this.usuariosPath = '/api/usuarios';
-
+        this.conectarDB();
         //MIDDLEWARES
         this.middlewares();
 
         //RUTAS
         this.routes();
+    }
+
+    async conectarDB(){
+        await conexionDB();
     }
 
     middlewares(){
@@ -40,42 +45,3 @@ class Server {
 }
 
 module.exports = Server
-
-
-
-/*
-const express = require('express');
-const CORS = require('cors')
-
-const Server {
-    constructor(){
-        this.app = express();
-        this.PORT = process.env.PORT;
-        this.userPath = '/api/usuarios';
-        this.middlewares();
-        this.routes();
-
-    }
-
-    middlewares(){
-        this.app.use(cors);
-        this.app.use(express.static('public'));    
-    }
-
-    routes(){
-        this.app.use(this.userPath require('./routes/user.js'));
-    }
-
-    listen(){
-        this.app.listen(this.PORT, () => {
-            console.log('Corriendo el servidor', this.PORT);
-        })
-    }
-
-
-}
-
-module.exports = Server;
-
-
-*/
