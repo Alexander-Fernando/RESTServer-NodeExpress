@@ -67,14 +67,15 @@ const usuarioPost =  async (req, res) => {
 
 const usuarioDelete = async (req, res) => {
     const { id } = req.params;
-
-    //ELIMINACIÓN FÍSICA DEL DOCUMENTO
-    // const usuarioDelete = await Usuario.findByIdAndDelete(id)
-
-    //ELIMINACIÓN PARA TENER SEGUIMIENTO  DEL USUARIO
+    const uid = req.uid;
+    const usuario = req.userAuth;
     const usuarioDelete = await Usuario.findByIdAndUpdate(id, {estado: false});
 
-    res.json(usuarioDelete)
+    res.json({
+        usuarioDelete,
+        uid,
+        usuario
+    })
 }
 
 const usuarioPatch = (req, res) => {
