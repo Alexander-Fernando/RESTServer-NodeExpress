@@ -9,6 +9,7 @@ class Server {
         this.usuariosPath = '/api/usuarios';
         this.authPath     = '/api/auth';
         this.conectarDB();
+        
         //MIDDLEWARES
         this.middlewares();
 
@@ -25,7 +26,7 @@ class Server {
         this.app.use(cors());
         //DIRECTORIO PÚBLICO
         this.app.use(express.static('public'));
-        //LECTURA Y PARSEO DEL BPDY
+        //LECTURA Y PARSEO DEL BODY
         this.app.use(express.json());
     }
 

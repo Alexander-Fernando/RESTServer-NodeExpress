@@ -20,6 +20,7 @@ const UsuarioSchema = Schema({
     rol: {
         type: String,
         required: true,
+        default: 'USER_ROLE',
         emin: ['ADMIN_ROLE', 'USER_ROLE', ]
     },
     estado: {
